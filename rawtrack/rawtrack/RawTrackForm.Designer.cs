@@ -133,7 +133,7 @@
             // 
             // buttonGo
             // 
-            this.buttonGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonGo.Location = new System.Drawing.Point(168, 255);
             this.buttonGo.Name = "buttonGo";
             this.buttonGo.Size = new System.Drawing.Size(40, 23);
@@ -165,7 +165,7 @@
             // 
             // buttonAbort
             // 
-            this.buttonAbort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAbort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAbort.Location = new System.Drawing.Point(221, 255);
             this.buttonAbort.Name = "buttonAbort";
             this.buttonAbort.Size = new System.Drawing.Size(44, 23);
@@ -176,6 +176,8 @@
             // 
             // progressBarTrack
             // 
+            this.progressBarTrack.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBarTrack.Location = new System.Drawing.Point(13, 255);
             this.progressBarTrack.Name = "progressBarTrack";
             this.progressBarTrack.Size = new System.Drawing.Size(149, 22);
@@ -187,6 +189,7 @@
             // 
             // labelProgress
             // 
+            this.labelProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelProgress.AutoSize = true;
             this.labelProgress.BackColor = System.Drawing.Color.Transparent;
             this.labelProgress.Location = new System.Drawing.Point(71, 259);
