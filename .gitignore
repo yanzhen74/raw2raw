@@ -1,4 +1,6 @@
 # git ignore file
-.cache
-.exe
-.dat
+*.cache
+*.exe
+*.dat
+*.pdb
+*.suo
