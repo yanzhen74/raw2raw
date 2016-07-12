@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBoxInFile = new System.Windows.Forms.ListBox();
@@ -36,11 +37,21 @@
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonGo = new System.Windows.Forms.Button();
+            this.textBoxOutFile = new System.Windows.Forms.TextBox();
+            this.buttonOutFile = new System.Windows.Forms.Button();
+            this.buttonAbort = new System.Windows.Forms.Button();
+            this.progressBarTrack = new System.Windows.Forms.ProgressBar();
+            this.timerTrack = new System.Windows.Forms.Timer(this.components);
+            this.labelProgress = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.buttonDown);
             this.groupBox1.Controls.Add(this.buttonUp);
             this.groupBox1.Controls.Add(this.buttonDel);
@@ -55,6 +66,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.buttonOutFile);
+            this.groupBox2.Controls.Add(this.textBoxOutFile);
             this.groupBox2.Location = new System.Drawing.Point(13, 187);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(259, 62);
@@ -118,18 +133,75 @@
             // 
             // buttonGo
             // 
-            this.buttonGo.Location = new System.Drawing.Point(146, 255);
+            this.buttonGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonGo.Location = new System.Drawing.Point(168, 255);
             this.buttonGo.Name = "buttonGo";
-            this.buttonGo.Size = new System.Drawing.Size(36, 23);
+            this.buttonGo.Size = new System.Drawing.Size(40, 23);
             this.buttonGo.TabIndex = 1;
             this.buttonGo.Text = "Go";
             this.buttonGo.UseVisualStyleBackColor = true;
+            this.buttonGo.Click += new System.EventHandler(this.buttonGo_Click);
+            // 
+            // textBoxOutFile
+            // 
+            this.textBoxOutFile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxOutFile.Location = new System.Drawing.Point(6, 21);
+            this.textBoxOutFile.Name = "textBoxOutFile";
+            this.textBoxOutFile.Size = new System.Drawing.Size(212, 21);
+            this.textBoxOutFile.TabIndex = 0;
+            // 
+            // buttonOutFile
+            // 
+            this.buttonOutFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOutFile.Location = new System.Drawing.Point(224, 21);
+            this.buttonOutFile.Name = "buttonOutFile";
+            this.buttonOutFile.Size = new System.Drawing.Size(29, 23);
+            this.buttonOutFile.TabIndex = 1;
+            this.buttonOutFile.Text = "...";
+            this.buttonOutFile.UseVisualStyleBackColor = true;
+            this.buttonOutFile.Click += new System.EventHandler(this.buttonSaveFile_Click);
+            // 
+            // buttonAbort
+            // 
+            this.buttonAbort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAbort.Location = new System.Drawing.Point(221, 255);
+            this.buttonAbort.Name = "buttonAbort";
+            this.buttonAbort.Size = new System.Drawing.Size(44, 23);
+            this.buttonAbort.TabIndex = 1;
+            this.buttonAbort.Text = "Stop";
+            this.buttonAbort.UseVisualStyleBackColor = true;
+            this.buttonAbort.Click += new System.EventHandler(this.buttonStop_Click);
+            // 
+            // progressBarTrack
+            // 
+            this.progressBarTrack.Location = new System.Drawing.Point(13, 255);
+            this.progressBarTrack.Name = "progressBarTrack";
+            this.progressBarTrack.Size = new System.Drawing.Size(149, 22);
+            this.progressBarTrack.TabIndex = 2;
+            // 
+            // timerTrack
+            // 
+            this.timerTrack.Tick += new System.EventHandler(this.timerTrack_Tick);
+            // 
+            // labelProgress
+            // 
+            this.labelProgress.AutoSize = true;
+            this.labelProgress.BackColor = System.Drawing.Color.Transparent;
+            this.labelProgress.Location = new System.Drawing.Point(71, 259);
+            this.labelProgress.Name = "labelProgress";
+            this.labelProgress.Size = new System.Drawing.Size(0, 12);
+            this.labelProgress.TabIndex = 3;
             // 
             // RawTrackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 282);
+            this.Controls.Add(this.labelProgress);
+            this.Controls.Add(this.progressBarTrack);
+            this.Controls.Add(this.buttonAbort);
             this.Controls.Add(this.buttonGo);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -137,7 +209,10 @@
             this.Text = "Raw数据文件转换小工具";
             this.Load += new System.EventHandler(this.RawTrackForm_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -151,6 +226,12 @@
         private System.Windows.Forms.ListBox listBoxInFile;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonGo;
+        private System.Windows.Forms.Button buttonOutFile;
+        private System.Windows.Forms.TextBox textBoxOutFile;
+        private System.Windows.Forms.Button buttonAbort;
+        private System.Windows.Forms.ProgressBar progressBarTrack;
+        private System.Windows.Forms.Timer timerTrack;
+        private System.Windows.Forms.Label labelProgress;
     }
 }
 
