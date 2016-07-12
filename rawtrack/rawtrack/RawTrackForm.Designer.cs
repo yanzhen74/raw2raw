@@ -1,6 +1,6 @@
 ﻿namespace rawtrack
 {
-    partial class Form1
+    partial class RawTrackForm
     {
         /// <summary>
         /// 必需的设计器变量。

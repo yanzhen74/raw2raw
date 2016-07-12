@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace rawtrack
 {
-    public partial class Form1 : Form
+    public partial class RawTrackForm : Form
     {
-        public Form1()
+        public RawTrackForm()
         {
             InitializeComponent();
         }
