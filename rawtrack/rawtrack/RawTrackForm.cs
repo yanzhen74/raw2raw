@@ -22,6 +22,7 @@ namespace rawtrack
             this.listBoxInFile.Items.Add("this is two test");
         }
 
+        #region 增删、调整顺序
         private void buttonDel_Click(object sender, EventArgs e)
         {
             for (int n = listBoxInFile.SelectedItems.Count-1; n >= 0; n--)
@@ -32,8 +33,20 @@ namespace rawtrack
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            Random rd=new Random();
-            this.listBoxInFile.Items.Add("just a test line" + rd.NextDouble().ToString());
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.RestoreDirectory = true;
+            ofd.Filter = "dat files (*.dat)|*.dat|All files (*.*)|*.*";
+            ofd.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+            ofd.Multiselect = true;
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                foreach (string file in ofd.FileNames)
+                {
+                    if (this.listBoxInFile.Items.Contains(file))
+                        continue;
+                    this.listBoxInFile.Items.Add(file);
+                }
+            }
         }
 
         private void buttonUp_Click(object sender, EventArgs e)
@@ -49,6 +62,8 @@ namespace rawtrack
                             object tmp = this.listBoxInFile.Items[i].ToString().Clone();
                             this.listBoxInFile.Items[i] = this.listBoxInFile.Items[i - 1];
                             this.listBoxInFile.Items[i - 1] = tmp;
+                            this.listBoxInFile.SetSelected(i - 1, true);
+                            this.listBoxInFile.SetSelected(i, false);
                         }
                         break;
                     }
@@ -69,6 +84,8 @@ namespace rawtrack
                             object tmp = this.listBoxInFile.Items[i].ToString().Clone();
                             this.listBoxInFile.Items[i] = this.listBoxInFile.Items[i + 1];
                             this.listBoxInFile.Items[i + 1] = tmp;
+                            this.listBoxInFile.SetSelected(i + 1, true);
+                            this.listBoxInFile.SetSelected(i, false);
                         }
                         break;
                     }
@@ -76,5 +93,6 @@ namespace rawtrack
             }
 
         }
+        #endregion
     }
 }
