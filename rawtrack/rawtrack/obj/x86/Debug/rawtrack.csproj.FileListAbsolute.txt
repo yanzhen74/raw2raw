@@ -1,7 +1,0 @@
-E:\study\c#\raw2raw\rawtrack\rawtrack\bin\Debug\rawtrack.exe
-E:\study\c#\raw2raw\rawtrack\rawtrack\bin\Debug\rawtrack.pdb
-E:\study\c#\raw2raw\rawtrack\rawtrack\obj\x86\Debug\rawtrack.Properties.Resources.resources
-E:\study\c#\raw2raw\rawtrack\rawtrack\obj\x86\Debug\rawtrack.RawTrackForm.resources
-E:\study\c#\raw2raw\rawtrack\rawtrack\obj\x86\Debug\rawtrack.csproj.GenerateResource.Cache
-E:\study\c#\raw2raw\rawtrack\rawtrack\obj\x86\Debug\rawtrack.exe
-E:\study\c#\raw2raw\rawtrack\rawtrack\obj\x86\Debug\rawtrack.pdb
