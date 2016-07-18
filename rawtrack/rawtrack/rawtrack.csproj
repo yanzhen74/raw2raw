@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="common\PathUtil.cs" />
+    <Compile Include="common\XmlHelper.cs" />
     <Compile Include="RawTrackForm.cs">
       <SubType>Form</SubType>
     </Compile>

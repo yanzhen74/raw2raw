@@ -13,6 +13,7 @@ namespace rawtrack.TrackData
         public int inputFrameLength = 937;
         public int outputFrameLength = 886;
         public int frameShiftLength = 47;
+        public int downSpeedMbps = 80;
     }
 
     // 数据抽取框架，遍历输入文件列表，对每个文件抽取指定长度帧，通过TrackDataCore
@@ -27,16 +28,11 @@ namespace rawtrack.TrackData
             set;
         }
 
-        internal bool TrackFile(BinaryReader brInFile)
+        internal bool TrackFile(BinaryReader brInFile, ref ulong nByteProcessed)
         {
-            if (this.OutInfo.outFileName == "")
+            if (!TryOpenOutFile())
             {
                 return false;
-            }
-            if (outFileStream == null)
-            {
-                outFileStream = new FileStream(this.OutInfo.outFileName, FileMode.Create);
-                this.outFileWriter = new BinaryWriter(outFileStream);
             }
 
             if (brInFile.BaseStream.Length == 0 || brInFile.BaseStream.Length % OutInfo.inputFrameLength != 0)
@@ -45,11 +41,38 @@ namespace rawtrack.TrackData
                 return false;
             }
 
-                TrackBlock(brInFile);
+            TrackBlock(brInFile, ref nByteProcessed);
             return true;
         }
 
-        private void TrackBlock(BinaryReader br)
+        private bool TryOpenOutFile()
+        {
+            if (this.OutInfo.outFileName == "")
+            {
+                return false;
+            }
+            if (outFileStream == null)
+            {
+                try
+                {
+                    outFileStream = new FileStream(this.OutInfo.outFileName, FileMode.Create);
+                    this.outFileWriter = new BinaryWriter(outFileStream);
+                }
+                catch (Exception)
+                {
+                    if (outFileStream != null)
+                    {
+                        outFileStream.Close();
+                        outFileStream = null;
+                    }
+                    this.outFileWriter = null;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void TrackBlock(BinaryReader br, ref ulong nByteProcessed)
         {
             while (br.BaseStream.Position < br.BaseStream.Length)
             {
@@ -71,7 +94,7 @@ namespace rawtrack.TrackData
                 }
 
                 outFileWriter.Write(bufferOut);
-
+                nByteProcessed += (ulong)(blockNum * OutInfo.outputFrameLength);
             }
         }
 
