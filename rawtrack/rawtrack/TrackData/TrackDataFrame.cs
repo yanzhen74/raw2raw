@@ -10,8 +10,8 @@ namespace rawtrack.TrackData
     public class TrackInfo
     {
         public string outFileName = "";
-        public int inputFrameLength = 937;
-        public int outputFrameLength = 886;
+        public int inputFrameLength = 1024;
+        public int outputFrameLength = 768;
         public int frameShiftLength = 47;
         public int downSpeedMbps = 80;
     }

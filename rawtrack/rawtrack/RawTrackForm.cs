@@ -30,6 +30,11 @@ namespace rawtrack
         private void RawTrackForm_Load(object sender, EventArgs e)
         {
             this.textBoxOutFile.Text = "g:\\toCTCC.raw";
+            // 初始化输出转换设置
+            TrackInfo ti = new TrackInfo();
+            this.textBoxFrameShiftLength.Text = ti.frameShiftLength.ToString();
+            this.textBoxInputFrameLength.Text = ti.inputFrameLength.ToString();
+            this.textBoxOutputFrameLength.Text = ti.outputFrameLength.ToString();
         }
 
         #region 输入数据文件列表编辑，Save/Load/增删、调整顺序
@@ -237,6 +242,9 @@ namespace rawtrack
         {
             TrackInfo ti = new TrackInfo();
             ti.outFileName = this.textBoxOutFile.Text;
+            ti.inputFrameLength = Convert.ToInt32(this.textBoxInputFrameLength.Text);
+            ti.outputFrameLength = Convert.ToInt32(this.textBoxOutputFrameLength.Text);
+            ti.frameShiftLength = Convert.ToInt32(this.textBoxFrameShiftLength.Text);
             return ti;
         }
 
